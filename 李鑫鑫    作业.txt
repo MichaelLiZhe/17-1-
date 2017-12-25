@@ -1,0 +1,106 @@
+package file;
+
+import java.io.File;
+import java.io.StringReader;
+
+import java.util.HashMap;
+import java.util.Iterator;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
+public class dom {
+	public void w(String fileName,HashMap<String,String>hm){
+		try {
+			File f=new File(fileName);
+			SAXReader s=new SAXReader();
+			Document d=s.read(f);
+			Element e=d.getRootElement();
+			int num=-1;
+			for(Iterator I=e.elementIterator();I.hasNext();){
+				Element e1=(Element) I.next();
+				num++;
+				for(Iterator II=e1.elementIterator();II.hasNext();){
+					Element e2=(Element) II.next();
+					hm.put(e2.getName()+num, e2.getText());
+				}
+			}
+		} catch (DocumentException e) {
+
+			e.printStackTrace();
+		}
+	}
+}
+
+
+
+
+
+
+
+
+package file;
+
+import java.util.HashMap;
+
+public class textdom {
+	public static void main(String[]args){
+		String f="text.xml";
+		HashMap<String,String>hm=new HashMap<String,String>();
+		dom dd=new dom();
+		dd.w(f,hm);
+		for(int p=0;p<hm.size();p+=3){
+			int j=p/3;
+			System.out.println(hm.get("name"+j));
+			System.out.println(hm.get("age"+j));
+			System.out.println(hm.get("set"+j));
+			System.out.println(hm.get("zhiwei"+j));
+		}
+
+	}
+
+
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xinxis>
+	<xinxi1>
+		<name>马云</name>
+		<age>55</age>
+		<set>男</set>
+		<zhiwei>阿里巴巴CEO</zhiwei>
+	</xinxi1>
+
+	<xinxi2>
+		<name>董明珠</name>
+		<age>54</age>
+		<set>女</set>
+		<zhiwei>格力董事长</zhiwei>
+	</xinxi2>
+
+	<xinxi3>
+		<name>王健林</name>
+		<age>56</age>
+		<set>男</set>
+		<zhiwei>万达董事长</zhiwei>
+	</xinxi3>
+
+</xinxis>
+
+
+
+
+
+
+
+
+
+
+}
