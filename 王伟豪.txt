@@ -1,0 +1,60 @@
+public class Dom4j1 {
+public void dom4j(String fileName,HashMap<String, String> hm){
+	
+		File fl=new File(fileName);
+		SAXReader sx=new SAXReader();
+		try {
+			Document dom=sx.read(fl);
+			Element et=dom.getRootElement();
+			int num=-1;
+			for (Iterator i=et.elementIterator();i.hasNext();) {
+				Element ent=(Element) i.next();
+				num++;
+				for (Iterator it=ent.elementIterator();it.hasNext();) {
+					Element e=(Element) it.next();
+					hm.put(e.getName()+num, e.getText());
+				}
+			}
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+}	
+	
+}
+
+
+
+
+public class Dom4jText {
+	public static void main(String[] args) {
+		String fileName="name2.xml";
+		HashMap<String,String> hm=new HashMap<String,String>();
+		Dom4j1 d4=new Dom4j1();
+		d4.dom4j(fileName, hm);
+		for (int i = 0; i <hm.size(); i+=3) {
+			int j=i/3;
+			System.out.println(hm.get("name"+j));
+			System.out.println(hm.get("age"+j));
+			System.out.println(hm.get("sex"+j));
+		}
+	}
+
+
+<students>
+	<student>
+		<name>刘五</name>
+		<age>7</age>
+		<sex>男</sex>
+	</student>
+	<student>
+		<name>李四</name>
+		<age>18</age>
+		<sex>男</sex>
+	</student>
+	<student>
+		<name>张三</name>
+		<age>25</age>
+		<sex>女</sex>
+	</student>
+</students>
