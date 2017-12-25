@@ -1,0 +1,34 @@
+package com.bdqn.object.dom4j;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+import org.w3c.dom.DOMConfiguration;
+public class Dom4j1 {
+	public void dom4jJX(String fileName,HashMap<String, String>hm){
+		try {
+			File f=new File(fileName);
+			SAXReader sa=new SAXReader();
+			Document d=sa.read(f);
+			Element e=d.getRootElement();
+			int num=-1;
+			for(Iterator in=e.elementIterator();in.hasNext();){
+				Element el=(Element) in.next();
+				num++;
+				for(Iterator in1=el.elementIterator();in1.hasNext();){
+					Element el1=(Element) in1.next();
+					hm.put(el1.getName()+num, el1.getText());
+				}
+			}
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

@@ -1,0 +1,19 @@
+package com.bdqn.object.dom4j;
+
+import java.util.HashMap;
+
+public class TestDom4j {
+	public static void main(String[] args) {
+		String fileName="Student.xml";
+		HashMap<String, String> hm=new HashMap<String,String>();
+		 Dom4j1  d4=new  Dom4j1 ();
+		 d4.dom4jJX(fileName, hm);
+		 for(int i=0;i<hm.size();i+=3){
+			 int j=i/3;
+			 System.out.println(hm.get("name")+j);
+			 System.out.println(hm.get("age")+j);
+			 System.out.println(hm.get("sex")+j);
+		 }
+	}
+
+}

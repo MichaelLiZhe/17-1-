@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+	<student>
+		<name>ю╚хн╫Ю</name>
+		<age>18</age>
+		<sex>дп</sex>
+	</student>
+<student>
+		<name>мУн╟╨ю</name>
+		<age>19</age>
+		<sex>дп</sex>
+	</student>
+<student>
+		<name>ндят</name>
+		<age>18</age>
+		<sex>дп</sex>
+	</student>
+</students>
