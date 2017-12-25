@@ -1,0 +1,68 @@
+import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
+public class dom4j {
+	public void a(String name,HashMap<String, String> hm){
+		try {
+			File f=new File(name);
+			SAXReader sa=new SAXReader();
+			Document d=sa.read(f);
+			Element a=d.getRootElement();
+			int c=-1;
+			for(Iterator in=a.elementIterator();in.hasNext();){
+				Element el=(Element) in.next();
+				c++;
+				for(Iterator in1=el.elementIterator();in1.hasNext();){
+					Element el1=(Element) in1.next();
+					hm.put(el1.getName()+c, el1.getText());
+				}
+			}
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
+******************************************************************************
+import java.util.HashMap;
+
+public class xmldom4j {
+	public static void main(String[] args) {
+		String name="ChengJi.xml";//
+		HashMap<String, String> hm=new HashMap<String, String>();//
+		dom4j q=new dom4j();
+		q.a(name, hm);
+		for (int i = 0; i < hm.size(); i+=3) {
+			int w=i/3;
+			System.out.println(hm.get("name"+w));
+			System.out.println(hm.get("kecheng"+w));
+			System.out.println(hm.get("fenshu"+w));
+		}
+	}
+}
+**************************************************************************
+<?xml version="1.0" encoding="UTF-8"?>
+<xinxi>
+	<!-- ³É¼¨±í -->
+	<cheng id="1">
+		<name>Æ¤¿¨Çð</name>
+		<kecheng>Java</kecheng>
+		<fenshu>85</fenshu>
+	</cheng>
+	<cheng id="2">
+		<name>¶ßÀ²AÃÎ</name>
+		<kecheng>Java</kecheng>
+		<fenshu>90</fenshu>
+	</cheng>
+	<cheng id="3">
+		<name>Æ¥Åµ²Ü</name>
+		<kecheng>Java</kecheng>
+		<fenshu>75</fenshu>
+	</cheng>
+</xinxi>
