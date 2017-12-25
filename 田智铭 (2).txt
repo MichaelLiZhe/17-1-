@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lies>
+	<lie id="1">
+		<name>小明</name>
+		<age>1</age>
+		<sex>小1</sex>
+	</lie>
+	<lie id="2">
+		<name>小明</name>
+		<age>1</age>
+		<sex>小1</sex>
+	</lie>
+	<lie id="3">
+		<name>小明</name>
+		<age>1</age>
+		<sex>小1</sex>
+	</lie>
+</lies>

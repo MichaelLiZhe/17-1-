@@ -1,0 +1,70 @@
+package Bdqn.TaoYu.Class.XML;
+
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
+
+public class Dom4j1 {
+	public void Dom4jJX(String fileName,HashMap<String,String>hm) throws DocumentException {
+		File f=new File(fileName);
+		SAXReader sa=new SAXReader();
+		Document d=sa.read(f);
+		Element e=d.getRootElement();
+		int num=-1;
+		for(Iterator in=e.elementIterator();in.hasNext();) {
+			Element el=(Element) in.next();
+			num++;
+			for(Iterator in1=el.elementIterator();in1.hasNext();) {
+				Element el1=(Element) in1.next();
+				hm.put(el1.getName()+num, el1.getText());
+			}
+		}
+	}
+}
+**********************************²âÊÔ***********************************
+package Bdqn.TaoYu.Class.XML;
+
+import java.util.HashMap;
+
+import org.dom4j.DocumentException;
+
+public class TextDom4j1 {
+	public static void main(String[] args) throws DocumentException {
+		String fileName="God.xml";
+		HashMap<String,String> hm=new HashMap<String,String>();
+		Dom4j1  dom=new Dom4j1();
+		dom.Dom4jJX(fileName, hm);
+		for (int i = 0; i < hm.size(); i+=3) {
+			int j=i/3;
+			System.out.println(hm.get("Name"+j));
+			System.out.println(hm.get("Age"+j));
+			System.out.println(hm.get("Sex"+j));
+		}
+	}
+}
+*************************xml************************
+<?xml version="1.0" encoding="UTF-8"?>
+<peoples>
+	<People>
+		<Name>ÌÕÓî</Name>
+		<Age>18</Age>
+		<Sex>ÄÐ</Sex>
+	</People>
+	<people>
+		<Name>ÕÅÇ¿</Name>
+		<Age>16</Age>
+		<Sex>ÄÐ</Sex>
+	</people>
+	<people>
+		<Name>Ñ¦³¿</Name>
+		<Age>15</Age>
+		<Sex>ÄÐ</Sex>
+	</people>
+</peoples>
