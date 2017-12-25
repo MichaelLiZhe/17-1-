@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+	<student id="1">
+		<name>xx</name>
+		<age>17</age>
+		<sex>女</sex>
+	</student>
+	<student id="2">
+		<name>小小</name>
+		<age>16</age>
+		<sex>女</sex>
+	</student>
+	<student id="3">
+		<name>阿狸</name>
+		<age>21</age>
+		<sex>男</sex>
+	</student>
+</students>
+*********************************************************************
+import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
+public class Teststudent {
+   public void DOM4j(String fileName,HashMap<String,String> hm){
+	try {
+		File f=new File(fileName);
+		SAXReader sa=new SAXReader();
+		Document d = sa.read(f);
+		Element e=d.getRootElement();
+		int q=-1;
+		for (Iterator i=e.elementIterator();i.hasNext();) {
+			Element e1=(Element) i.next();
+			q++;
+			for (Iterator i1=e1.elementIterator();i1.hasNext();) {
+				Element e2=(Element) i1.next();
+				hm.put(e2.getName()+q, e2.getText());
+			}
+		}
+	} catch (DocumentException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	
+   }
+}
+**********************************************************************************************
+import java.util.HashMap;
+
+public class JieXistudent {
+     public static void main(String[] args) {
+    	 Teststudent t=new Teststudent();
+    	 String fileName="student.xml";
+    	 HashMap<String,String> hm=new HashMap<String,String>();
+    	 t.DOM4j(fileName, hm);
+    	 for (int i = 0; i < hm.size(); i+=3) {
+			int j=i/3;
+			System.out.println(hm.get("name"+j));
+			System.out.println(hm.get("age"+j));
+			System.out.println(hm.get("sex"+j));
+		}
+	}
+}
