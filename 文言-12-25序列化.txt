@@ -1,0 +1,66 @@
+
+package Study1;
+
+import java.io.Serializable;
+
+public class XuLie implements Serializable {
+	private String name;
+	private int age;
+	
+        public XuLie() {
+		super();
+	}
+	public XuLie(String name, int age) {
+		super();
+		this.name = name;
+		this.age = age;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
+}
+
+
+
+
+
+package Study1;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+public class XuLieHua {
+	public static void main(String[] args) {
+		XuLie x=new XuLie("ÎÄÑÒ",20);
+		try {
+			ObjectOutputStream s=new ObjectOutputStream(new FileOutputStream("D:\\22\\2.txt"));
+			s.writeObject(x);
+			ObjectInputStream s1=new ObjectInputStream(new FileInputStream("D:\\22\\2.txt"));
+			XuLie s2= (XuLie) s1.readObject();
+			System.out.println("ÐÕÃû"+s2.getName()+"\t"+"ÄêÁä"+s2.getAge());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
