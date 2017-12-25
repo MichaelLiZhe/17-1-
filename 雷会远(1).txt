@@ -1,0 +1,52 @@
+package com.bdqn.c1.Dom4j1;
+
+import java.util.HashMap;
+
+public class Test {
+public static void main(String[] args) {
+	String fileName="Scores.xml";//ÎÄ¼þÂ·¾¶
+	HashMap<String, String>hm=new HashMap<String, String>();//³ÐÔØÈÝÆ÷
+	Jiexi j=new Jiexi();
+	j.Dom4jJX(fileName, hm);
+	for (int i = 0; i < hm.size(); i+=3) {
+		int n=i/3;
+		System.out.println(hm.get("name"+n));
+		System.out.println(hm.get("person"+n));
+		System.out.println(hm.get("chengji"+n));
+	}
+}
+}
+*****************************************************************************
+package com.bdqn.c1.Dom4j1;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
+public class Jiexi {
+	public void Dom4jJX(String filedName,HashMap<String,String>hm){
+		try {
+			File f=new File(filedName);
+			SAXReader sa=new SAXReader();
+			Document d = sa.read(f);
+			Element e=d.getRootElement();
+			int num=-1;
+			for (Iterator in=e.elementIterator();in.hasNext();) {
+				Element el=(Element) in.next();
+				num++;
+				for (Iterator in1=el.elementIterator();in1.hasNext();) {
+					Element el1=(Element) in1.next();
+					hm.put(el1.getName()+num, el1.getText());
+				}
+			}
+		} catch (DocumentException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+}
