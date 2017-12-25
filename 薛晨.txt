@@ -1,0 +1,82 @@
+import java.io.File;
+import java.util.Iterator;
+
+
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
+
+
+public class Dom4jjx {
+
+	public static void main(String[] args) {
+		try{
+
+			File f=new File(fileName);
+			SAXReader sa=new SAXReader();
+			Document d=sa.read(f);
+			Element el=d.getRootElement();
+			int num=-1;
+			for(Iterator  in=el.elementIterator();in.hasNext();){
+				Element el=(Element) in.next();
+				num++;
+				for(Iterator in1=el.elementIterator();in1.hasNext();){
+					Element el1=(Element) in1.next();
+					hm.put(el1.getName()+num,el1.getText());
+				}
+			}
+
+		}catch (DocumentException e){
+			e.printStackTrace();
+		}
+	}
+
+}
+
+
+
+
+
+
+import java.util.HashMap;
+
+
+public class Dom4jTest {
+
+	
+	public static void main(String[] args) {
+		String fileName="students.xml";
+		HashMap<String,String>hm=new HashMap<String,String>();
+		Dom4j1 d4=new Dom4j1();
+		d4.Dom4jjx(fileName,hm);
+		for (int i = 0; i < hm.size(); i+=3) {
+			int j=i/3;
+			System.out.println(hm.get("name"+j));
+			System.out.println(hm.get("age"+j));
+			System.out.println(hm.get("sex"+j));
+			
+		}
+		
+
+	}
+
+}
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<poples>
+    <!-成绩信息->
+    <people id="1">
+        <name>黄晓明</name>
+        <age>19</age>
+        <sex>男</sex>
+    </people>
+    <people id="2">
+        <name>刘亦菲</name>
+        <age>18</age>
+        <sex>女</sex>
+    </people>
+</poples>
