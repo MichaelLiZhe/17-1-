@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+<!-- 图书信息 -->
+	<book id="1">
+		<timu>三国演义</timu>
+		<zuozhe>罗贯中</zuozhe>
+		<neirong>东汉末年的那些事</neirong>
+	</book>
+	<book id="2">
+		<timu>红楼梦</timu>
+		<zuozhe>曹雪芹</zuozhe>
+		<neirong>以贾、史、王、薛四大家族的兴衰为背景</neirong>
+	</book>
+	<book>
+	<timu>红楼梦1</timu>
+		<zuozhe>曹雪芹1</zuozhe>
+		<neirong>以贾、史、王、薛四大家族的兴衰为背景1</neirong>
+	</book>
+</books>

@@ -1,0 +1,35 @@
+package com.bdqn.c2.jincheng;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
+public class JieXi1 {
+	public static void main(String[] args) throws DocumentException {
+		HashMap<String, String> hh=new HashMap<String,String>();
+		File f=new File("NewWang.xml");
+		SAXReader ab=new SAXReader();
+		Document n1=ab.read(f);
+		Element ss=n1.getRootElement();
+		int num=-1;
+		for (Iterator in = ss.elementIterator(); in.hasNext();) {
+			Element ss1=(Element) in.next();
+			num++;
+			for (Iterator in1 = ss1.elementIterator(); in1.hasNext();) {
+				Element ss2 = (Element) in1.next();
+				hh.put(ss2.getName()+num, ss2.getText());
+			}
+		}
+		for (int i = 0; i < hh.size(); i+=3) {
+			int j=i/3;
+			System.out.println(hh.get("timu"+j));
+			System.out.println(hh.get("zuozhe"+j));
+			System.out.println(hh.get("neirong"+j));
+		}
+	}
+}
