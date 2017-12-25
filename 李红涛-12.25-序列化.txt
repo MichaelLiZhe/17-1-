@@ -1,0 +1,64 @@
+package fanzheng;
+
+public class Studentlei {
+private String name;
+private int age;
+private String sex;
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public int getAge() {
+	return age;
+}
+public void setAge(int age) {
+	this.age = age;
+}
+public String getSex() {
+	return sex;
+}
+public void setSex(String sex) {
+	this.sex = sex;
+}
+public  Studentlei(String n,String s,int a){
+	System.out.println("我的名字是："+n+"\n"+"性别是："+s+"\n"+"年龄："+a);
+	
+}
+}
+
+**************************************************
+package fanzheng;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+public class Students implements Serializable{
+public static void main(String[] args) {
+	Studentlei a=new Studentlei();
+	a.q("李明"," 男", 18);
+	try {
+		ObjectOutputStream w=new ObjectOutputStream(new FileOutputStream("C:\\111\\11.txt"));
+		w.writeObject(a);
+		w.close();
+		ObjectInputStream ww=new ObjectInputStream(new FileInputStream("C:\\111\\11.txt"));
+		Studentlei  e=	(Studentlei) ww.readObject();
+		System.out.println("我的名字是："+e.getName()+"\n"+"性别是："+e.getSex()+"\n"+"年龄："+e.getAge());
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+}

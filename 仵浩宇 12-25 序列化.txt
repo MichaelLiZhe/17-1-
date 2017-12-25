@@ -1,0 +1,55 @@
+package com.xulie.wu;
+import java.io.Serializable;
+public class xu implements Serializable{
+	
+		private String name;
+		private int age;
+		
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public int getAge() {
+			return age;
+		}
+		public void setAge(int age) {
+			this.age = age;
+}
+}
+
+
+
+
+
+package com.xulie.wu;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+public class lie {
+	public static void main(String[] args) {
+		xu x=new xu();
+		x.setName("∫∆”Ó");
+		x.setAge(18);
+		try {
+			ObjectOutputStream s=new ObjectOutputStream(new FileOutputStream("F:\\1.txt"));
+			s.writeObject(x);
+			ObjectInputStream s1=new ObjectInputStream(new FileInputStream("F:\\1.txt"));
+			xu s2= (xu) s1.readObject();
+			System.out.println("–’√˚:"+s2.getName()+"\t"+"ƒÍ¡‰:"+s2.getAge());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

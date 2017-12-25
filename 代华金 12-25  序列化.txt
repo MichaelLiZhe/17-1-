@@ -1,0 +1,73 @@
+public class Student {
+
+    private String name;
+    private int age;
+
+    public Student(){}
+    public Student(String name,int age){
+        this.name = name;
+        this.age=age;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setAge(int age){
+        this.age = age;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public int getAge(){
+        return this.age;
+    £ý
+    @Override
+    public String toString(){
+        return ("my name is:"+this.name+" age is:"+this.age);
+    }
+}
+****************************
+public static void main(String[] args) throws IOException, ClassNotFoundException {
+  ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("hello.txt"));
+        Student stuW = new Student("walker",21);
+        oos.writeObject(stuW);
+        oos.close(£©£»
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("hello.txt"));
+        Student stuR = (Student)ois.readObject();
+        System.out.println(stuR);
+    }
+****************************
+public class Student implements Serializable {
+
+    String name;
+    Teacher t;
+
+}
+
+public class Teacher implements Serializable {
+    String name;
+    Student stu;
+
+}
+
+public static void main(String[] args) throws IOException, ClassNotFoundException {
+
+        Teacher t = new Teacher();
+        Student s =new Student();
+        t.name = "walker";
+        t.stu = s;
+        s.name = "yam";
+        s.t = t;
+
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("hello.txt"));
+        oos.writeObject(t);
+        oos.writeObject(s);
+        oos.close();
+
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("hello.txt"));
+        Teacher tR = (Teacher)ois.readObject();
+        Student sR = (Student)ois.readObject();
+        if(tR == sR.t && sR == tR.stu)System.out.println("ok");
+
+    }
+

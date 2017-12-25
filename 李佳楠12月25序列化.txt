@@ -1,0 +1,63 @@
+package com.bdqn.c2.mishuai;
+
+import java.io.Serializable;
+
+public class Students implements Serializable {
+	public Students() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	private String name;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	private int age;
+	public Students(String name, int age) {
+		super();
+		this.name = name;
+		this.age = age;
+	}
+	
+}
+
+
+
+
+
+public class Fanshe {
+	public static void main(String[] args) {
+		Students s1=new Students("帅", 19);
+		try {
+			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream("E:\\222\\22.txt"));
+			oos.writeObject(s1);
+			ObjectInputStream ois=new ObjectInputStream(new FileInputStream("E:\\222\\22.txt"));
+			Students s2=(Students) ois.readObject();
+			System.out.println("名字是："+s2.getName()+"\n"+"年龄是："+s2.getAge());
+			oos.close();
+			ois.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
+
+
+
+
+
